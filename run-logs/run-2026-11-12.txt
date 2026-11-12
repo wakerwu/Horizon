@@ -1,0 +1,217 @@
+=== 环境自检 2026-11-12T05:34:25Z ===
+python: Python 3.12.16
+uv: uv 0.11.26 (x86_64-unknown-linux-gnu)
+DEEPSEEK_API_KEY 长度: 0
+结论: Secret DEEPSEEK_API_KEY 为空 —— 这就是失败原因
+
+
+  _    _            _
+ | |  | |          (_)
+ | |__| | ___  _ __ _ ___  ___  _ __
+ |  __  |/ _ \| '__| |_  / / _ \| '_ \
+ | |  | | (_) | |  | |/ / | (_) | | | |
+ |_|  |_|\___/|_|  |_/___| \___/|_| |_|
+
+  AI-Driven Information Aggregation System
+    
+🌅 Horizon - Starting aggregation...
+
+📅 Fetching content since: 2026-11-11 05:34:28
+
+🔍 Fetching from GitHub...
+🔍 Fetching from Hacker News...
+🔍 Fetching from RSS Feeds...
+🔍 Fetching from Reddit...
+🔍 Fetching from Telegram...
+   Found 0 items from GitHub
+[11/12/26 05:34:29] WARNING  Reddit old HTML request failed for                 
+                             r/MachineLearning: Client error '403 Blocked' for  
+                             url                                                
+                             'https://old.reddit.com/r/MachineLearning/hot/?limi
+                             t=10'                                              
+                             For more information check:                        
+                             https://developer.mozilla.org/en-US/docs/Web/HTTP/S
+                             tatus/403                                          
+                    WARNING  Reddit old HTML returned no posts for              
+                             r/MachineLearning; falling back to JSON            
+                    WARNING  Reddit blocked JSON listing for r/MachineLearning; 
+                             falling back to RSS                                
+   Found 17 items from Hacker News
+      • ayhanfuat: 1
+      • bolau: 1
+      • brownrout: 1
+      • emschwartz: 1
+      • everlier: 1
+      • eyvindn: 1
+      • ggcr: 1
+      • gslin: 1
+      • herpderperator: 1
+      • iamdelirium: 1
+      • jbredeche: 1
+      • linsomniac: 1
+      • louiereederson: 1
+      • mbac32768: 1
+      • super_linear: 1
+      • zenincognito: 1
+      • zerop: 1
+   Found 20 items from Telegram
+   Found 20 items from RSS Feeds
+      • Simon Willison: 5
+      • TechCrunch AI: 15
+[11/12/26 05:34:31] WARNING  Reddit old HTML request failed for r/LocalLLaMA:   
+                             Client error '403 Blocked' for url                 
+                             'https://old.reddit.com/r/LocalLLaMA/hot/?limit=10'
+                             For more information check:                        
+                             https://developer.mozilla.org/en-US/docs/Web/HTTP/S
+                             tatus/403                                          
+                    WARNING  Reddit old HTML returned no posts for r/LocalLLaMA;
+                             falling back to JSON                               
+[11/12/26 05:34:32] WARNING  Reddit blocked JSON listing for r/LocalLLaMA;      
+                             falling back to RSS                                
+   Found 7 items from Reddit
+   Reddit/r/LocalLLaMA: HTTPStatusError: Client error '429 Too Many Requests' 
+for url 'https://www.reddit.com/r/LocalLLaMA/hot/.rss'
+For more information check: 
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+📥 Fetched 64 items from all sources
+
+🔗 Merged 1 cross-source duplicates → 63 unique items
+
+🤖 Analyzing content with AI...
+❌ Error: Missing API key environment variable configured by ai.api_key_env. 
+ai.api_key_env should contain the environment variable name, not the key value. 
+Set DEEPSEEK_API_KEY=your_api_key in .env or your shell, then set ai.api_key_env
+to "DEEPSEEK_API_KEY" in data/config.json.
+
+❌ Fatal error: Missing API key environment variable configured by 
+ai.api_key_env. ai.api_key_env should contain the environment variable name, not
+the key value. Set DEEPSEEK_API_KEY=your_api_key in .env or your shell, then set
+ai.api_key_env to "DEEPSEEK_API_KEY" in data/config.json.
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /home/runner/work/Horizon/Horizon/src/main.py:124 in main                    │
+│                                                                              │
+│   121 │   │   │   sys.exit(2)                                                │
+│   122 │   │                                                                  │
+│   123 │   │   orchestrator = HorizonOrchestrator(config, storage, console=co │
+│ ❱ 124 │   │   asyncio.run(orchestrator.run(force_hours=window))              │
+│   125 │                                                                      │
+│   126 │   except KeyboardInterrupt:                                          │
+│   127 │   │   console.print(f"\n[yellow]{icons['warning']} Interrupted by us │
+│                                                                              │
+│ /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/runners.py:19 │
+│ 5 in run                                                                     │
+│                                                                              │
+│   192 │   │   │   "asyncio.run() cannot be called from a running event loop" │
+│   193 │                                                                      │
+│   194 │   with Runner(debug=debug, loop_factory=loop_factory) as runner:     │
+│ ❱ 195 │   │   return runner.run(main)                                        │
+│   196                                                                        │
+│   197                                                                        │
+│   198 def _cancel_all_tasks(loop):                                           │
+│                                                                              │
+│ /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/runners.py:11 │
+│ 8 in run                                                                     │
+│                                                                              │
+│   115 │   │                                                                  │
+│   116 │   │   self._interrupt_count = 0                                      │
+│   117 │   │   try:                                                           │
+│ ❱ 118 │   │   │   return self._loop.run_until_complete(task)                 │
+│   119 │   │   except exceptions.CancelledError:                              │
+│   120 │   │   │   if self._interrupt_count > 0:                              │
+│   121 │   │   │   │   uncancel = getattr(task, "uncancel", None)             │
+│                                                                              │
+│ /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/asyncio/base_events.p │
+│ y:691 in run_until_complete                                                  │
+│                                                                              │
+│    688 │   │   if not future.done():                                         │
+│    689 │   │   │   raise RuntimeError('Event loop stopped before Future comp │
+│    690 │   │                                                                 │
+│ ❱  691 │   │   return future.result()                                        │
+│    692 │                                                                     │
+│    693 │   def stop(self):                                                   │
+│    694 │   │   """Stop running the event loop.                               │
+│                                                                              │
+│ /home/runner/work/Horizon/Horizon/src/orchestrator.py:293 in run             │
+│                                                                              │
+│    290 │   │   │   │   )                                                     │
+│    291 │   │   │                                                             │
+│    292 │   │   │   # 4. Analyze with AI                                      │
+│ ❱  293 │   │   │   analyzed_items = await self.analyze_items(merged_items)   │
+│    294 │   │   │   self.console.print(                                       │
+│    295 │   │   │   │   f"{self.icons['ai']} Analyzed {len(analyzed_items)} i │
+│    296 │   │   │   )                                                         │
+│                                                                              │
+│ /home/runner/work/Horizon/Horizon/src/orchestrator.py:1150 in analyze_items  │
+│                                                                              │
+│   1147 │   │   """                                                           │
+│   1148 │   │   self.console.print(f"{self.icons['ai']} Analyzing content wit │
+│   1149 │   │                                                                 │
+│ ❱ 1150 │   │   ai_client = self.ai_client                                    │
+│   1151 │   │   analyzer = ContentAnalyzer(                                   │
+│   1152 │   │   │   ai_client, self.profiles, console=self.console,           │
+│   1153 │   │   │   concurrency=self.config.ai.analysis_concurrency,          │
+│                                                                              │
+│ /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/functools.py:998 in   │
+│ __get__                                                                      │
+│                                                                              │
+│    995 │   │   │   raise TypeError(msg) from None                            │
+│    996 │   │   val = cache.get(self.attrname, _NOT_FOUND)                    │
+│    997 │   │   if val is _NOT_FOUND:                                         │
+│ ❱  998 │   │   │   val = self.func(instance)                                 │
+│    999 │   │   │   try:                                                      │
+│   1000 │   │   │   │   cache[self.attrname] = val                            │
+│   1001 │   │   │   except TypeError:                                         │
+│                                                                              │
+│ /home/runner/work/Horizon/Horizon/src/orchestrator.py:239 in ai_client       │
+│                                                                              │
+│    236 │   @cached_property                                                  │
+│    237 │   def ai_client(self) -> AIClient:                                  │
+│    238 │   │   """Share one client and account selection across the run's AI │
+│ ❱  239 │   │   return create_ai_client(self.config.ai)                       │
+│    240 │                                                                     │
+│    241 │   async def run(self, force_hours: Optional[int] = None) -> None:   │
+│    242 │   │   """Execute the complete workflow.                             │
+│                                                                              │
+│ /home/runner/work/Horizon/Horizon/src/ai/client.py:745 in create_ai_client   │
+│                                                                              │
+│   742 │   """                                                                │
+│   743 │   if config.provider_chain:                                          │
+│   744 │   │   return _create_chained_client(config)                          │
+│ ❱ 745 │   return _create_single_client(config)                               │
+│   746                                                                        │
+│                                                                              │
+│ /home/runner/work/Horizon/Horizon/src/ai/client.py:604 in                    │
+│ _create_single_client                                                        │
+│                                                                              │
+│   601 │   │   AIProvider.DEEPSEEK,                                           │
+│   602 │   │   AIProvider.OLLAMA,                                             │
+│   603 │   }:                                                                 │
+│ ❱ 604 │   │   return OpenAIClient(config)                                    │
+│   605 │   else:                                                              │
+│   606 │   │   raise ValueError(f"Unsupported AI provider: {config.provider}" │
+│   607                                                                        │
+│                                                                              │
+│ /home/runner/work/Horizon/Horizon/src/ai/client.py:258 in __init__           │
+│                                                                              │
+│   255 │   │   self.config = config                                           │
+│   256 │   │                                                                  │
+│   257 │   │   fallback = "no_key" if config.provider == AIProvider.OLLAMA el │
+│ ❱ 258 │   │   api_key = _resolve_api_key(config, fallback=fallback)          │
+│   259 │   │                                                                  │
+│   260 │   │   kwargs = {"api_key": api_key}                                  │
+│   261 │   │   base_url = self._resolve_base_url(config)                      │
+│                                                                              │
+│ /home/runner/work/Horizon/Horizon/src/ai/client.py:49 in _resolve_api_key    │
+│                                                                              │
+│    46 │   │   return api_key                                                 │
+│    47 │   if fallback is not None:                                           │
+│    48 │   │   return fallback                                                │
+│ ❱  49 │   raise ValueError(_missing_api_key_message(config))                 │
+│    50                                                                        │
+│    51                                                                        │
+│    52 def _missing_api_key_message(config: AIConfig) -> str:                 │
+╰──────────────────────────────────────────────────────────────────────────────╯
+ValueError: Missing API key environment variable configured by ai.api_key_env. 
+ai.api_key_env should contain the environment variable name, not the key value. 
+Set DEEPSEEK_API_KEY=your_api_key in .env or your shell, then set ai.api_key_env
+to "DEEPSEEK_API_KEY" in data/config.json.
