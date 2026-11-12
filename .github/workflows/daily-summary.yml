@@ -74,9 +74,9 @@ jobs:
         run: |
           mkdir -p run-logs
           if [ -f horizon-run.log ]; then
-            cp horizon-run.log "run-logs/run-${DATE}.log"
+            cp horizon-run.log "run-logs/run-${DATE}.txt"
           else
-            echo "(no log file produced)" > "run-logs/run-${DATE}.log"
+            echo "(no log file produced)" > "run-logs/run-${DATE}.txt"
           fi
           git config user.name "horizon-bot"
           git config user.email "horizon-bot@users.noreply.github.com"
