@@ -1,4 +1,4 @@
-=== 环境自检 2026-11-12T05:34:25Z ===
+=== 环境自检 2026-11-12T05:44:43Z ===
 python: Python 3.12.16
 uv: uv 0.11.26 (x86_64-unknown-linux-gnu)
 DEEPSEEK_API_KEY 长度: 0
@@ -16,15 +16,14 @@ DEEPSEEK_API_KEY 长度: 0
     
 🌅 Horizon - Starting aggregation...
 
-📅 Fetching content since: 2026-11-11 05:34:28
+📅 Fetching content since: 2026-11-11 05:44:48
 
 🔍 Fetching from GitHub...
 🔍 Fetching from Hacker News...
 🔍 Fetching from RSS Feeds...
 🔍 Fetching from Reddit...
 🔍 Fetching from Telegram...
-   Found 0 items from GitHub
-[11/12/26 05:34:29] WARNING  Reddit old HTML request failed for                 
+[11/12/26 05:44:48] WARNING  Reddit old HTML request failed for                 
                              r/MachineLearning: Client error '403 Blocked' for  
                              url                                                
                              'https://old.reddit.com/r/MachineLearning/hot/?limi
@@ -34,8 +33,14 @@ DEEPSEEK_API_KEY 长度: 0
                              tatus/403                                          
                     WARNING  Reddit old HTML returned no posts for              
                              r/MachineLearning; falling back to JSON            
-                    WARNING  Reddit blocked JSON listing for r/MachineLearning; 
+   Found 0 items from GitHub
+   GitHub/karpathy: HTTPStatusError: Client error '403 rate limit exceeded' for 
+url 'https://api.github.com/users/karpathy/events/public'
+For more information check: 
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+[11/12/26 05:44:49] WARNING  Reddit blocked JSON listing for r/MachineLearning; 
                              falling back to RSS                                
+   Found 20 items from Telegram
    Found 17 items from Hacker News
       • ayhanfuat: 1
       • bolau: 1
@@ -54,11 +59,10 @@ DEEPSEEK_API_KEY 长度: 0
       • super_linear: 1
       • zenincognito: 1
       • zerop: 1
-   Found 20 items from Telegram
    Found 20 items from RSS Feeds
       • Simon Willison: 5
       • TechCrunch AI: 15
-[11/12/26 05:34:31] WARNING  Reddit old HTML request failed for r/LocalLLaMA:   
+[11/12/26 05:44:51] WARNING  Reddit old HTML request failed for r/LocalLLaMA:   
                              Client error '403 Blocked' for url                 
                              'https://old.reddit.com/r/LocalLLaMA/hot/?limit=10'
                              For more information check:                        
@@ -66,7 +70,7 @@ DEEPSEEK_API_KEY 长度: 0
                              tatus/403                                          
                     WARNING  Reddit old HTML returned no posts for r/LocalLLaMA;
                              falling back to JSON                               
-[11/12/26 05:34:32] WARNING  Reddit blocked JSON listing for r/LocalLLaMA;      
+                    WARNING  Reddit blocked JSON listing for r/LocalLLaMA;      
                              falling back to RSS                                
    Found 7 items from Reddit
    Reddit/r/LocalLLaMA: HTTPStatusError: Client error '429 Too Many Requests' 
