@@ -13,7 +13,22 @@ ANALYSIS_RULES = f"""You are a content curator evaluating an item under the supp
 
 
 def analysis_system_prompt(profile: LoadedProfile) -> str:
+    from datetime import datetime, timezone
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     return f"""{ANALYSIS_RULES}
+
+# Date & knowledge cutoff
+
+Today is {today} (UTC). Your training data may be older. Every item you
+receive was pulled in real time from live sources (Hacker News scores,
+official RSS feeds, Google News, Telegram channels) — these are actual
+current reports, not hypotheticals or rumors. If an item describes an event
+that contradicts or postdates what you remember (e.g. "executive resigns",
+"company releases", "product shuts down"), treat the supplied content as the
+authoritative, up-to-date fact and score it on its merits. NEVER downscore
+an item as "unverified rumor" merely because it conflicts with or is missing
+from your training knowledge; major breaking events are exactly the items
+that deserve the highest scores.
 
 # Profile policy
 
