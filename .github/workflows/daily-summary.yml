@@ -2,9 +2,10 @@ name: Daily Horizon Summary
 
 on:
   schedule:
-    # GitHub scheduled workflows use UTC. 21:00 UTC = 05:00 Asia/Shanghai.
-    # 提前到凌晨 5 点，给本机 6:20 的出片任务留足时间窗。
-    - cron: '0 21 * * *'
+    # GitHub scheduled workflows use UTC. 21:17 UTC = 05:17 Asia/Shanghai.
+    # 整点（0 21）是 GitHub 定时任务丢弃高峰，实测被静默跳过一次（2026-11-13）；
+    # 错峰到 21:17，北京 05:17 出日报，仍早于本机 6:20 的出片任务。
+    - cron: '17 21 * * *'
   workflow_dispatch:      # Allow manual trigger
 
 jobs:
