@@ -104,6 +104,15 @@
           "profile": "ai-creator"
         }
       ]
+    },
+    "google_news": {
+      "enabled": true,
+      "query": "artificial intelligence OR NVIDIA OR OpenAI OR Anthropic OR Google DeepMind OR AI chip",
+      "language": "en",
+      "country": "US",
+      "max_results": 60,
+      "category": "ai-news",
+      "profile": "ai-creator"
     }
   },
   "collection": {

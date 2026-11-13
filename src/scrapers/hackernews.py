@@ -47,11 +47,35 @@ class HackerNewsScraper(BaseScraper):
             result.fail("topstories", exc)
             return result
 
+        # 实时热榜只反映"现在"的排名，深夜爆发的重大新闻几小时后就会
+        # 跌出 top N（实例：2026-11-12 黄仁勋辞职 374 分帖，次日清晨已
+        # 不在榜上）。用 Algolia 按时间窗回捞高分故事，与热榜合并。
+        since_ts = int(since.timestamp())
+        algolia_ids = await self._algolia_high_scores(since_ts)
+        merged = list(dict.fromkeys(
+            story_ids[:self.config.get("fetch_top_stories", 30)] + algolia_ids))
+
         await asyncio.gather(*(
             result.collect(f"story:{story_id}", self._fetch_story_item(story_id, since))
-            for story_id in story_ids[:self.config.get("fetch_top_stories", 30)]
+            for story_id in merged
         ))
         return result
+
+    async def _algolia_high_scores(self, since_ts: int) -> List[int]:
+        """回捞时间窗内分数达标的帖子（无论当前是否还在热榜上）。"""
+        try:
+            response = await self.client.get(
+                "https://hn.algolia.com/api/v1/search_by_date",
+                params={"tags": "story",
+                        "numericFilters":
+                            f"points>{self.config.get('min_score', 100)}",
+                        "hitsPerPage": 100})
+            response.raise_for_status()
+            hits = response.json().get("hits", [])
+            return [int(h["objectID"]) for h in hits
+                    if h.get("created_at_i", 0) >= since_ts]
+        except Exception:
+            return []
 
     async def _fetch_story_item(self, story_id: int, since: datetime) -> List[ContentItem]:
         story = await self._fetch_story(story_id)
