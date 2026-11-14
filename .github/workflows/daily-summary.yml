@@ -14,6 +14,13 @@ jobs:
     permissions:
       contents: write  # Needed to commit changes
 
+    env:
+      # 关键：Horizon 用当前日期给日报文件命名。runner 默认 UTC，
+      # 北京凌晨 5-6 点跑时 UTC 还是"昨天"，文件会被存成前一天的日期，
+      # 本地出片任务按北京日期找文件就永远 404（2026-11-14 实测）。
+      # 统一改成北京时区，文件名 = 北京日期。
+      TZ: Asia/Shanghai
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
