@@ -319,7 +319,9 @@ class HorizonOrchestrator:
                 )
 
             # 7. Generate and save daily summaries for each configured language
-            today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+            # 用本地日期（runner 已设 TZ=Asia/Shanghai）。此前用 timezone.utc，
+            # 北京凌晨运行时 UTC 还是昨天，日报文件名落到前一天（2026-11-19 修复）
+            today = datetime.now().strftime("%Y-%m-%d")
             for lang in self.config.ai.languages:
                 language_items = [
                     item for item in important_items
