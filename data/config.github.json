@@ -67,6 +67,14 @@
         "enabled": true,
         "category": "github-trending",
         "profile": "ai-creator"
+      },
+      {
+        "name": "量子位",
+        "url": "https://www.qbitai.com/feed",
+        "enabled": true,
+        "category": "ai-news",
+        "profile": "ai-creator",
+        "content_extractor": "trafilatura"
       }
     ],
     "reddit": {
