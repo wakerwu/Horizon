@@ -5,112 +5,96 @@ date: 2026-11-23
 lang: zh
 ---
 
-> 从 89 条内容中筛选出 6 条重要资讯。
+> 从 76 条内容中筛选出 5 条重要资讯。
 
 ---
 
 **AI 创作者雷达**
-1. [OpenRouter 披露推理供应商数据处理事件](#item-ai-creator-1) ⭐️ 8.0/10
-2. [Anthropic 数学家与 Claude 声称证明 Navier–Stokes 问题，同日另有 940 页纯人类黎曼猜想草稿公开](#item-ai-creator-2) ⭐️ 8.0/10
-3. [分析称 Anthropic 2028 年电力 87% 来自天然气、11% 来自煤炭](#item-ai-creator-3) ⭐️ 7.0/10
-4. [Gemini 将拆分“保留活动记录”为两项独立设置](#item-ai-creator-4) ⭐️ 7.0/10
-5. [OpenCode 将 GLM-5.3 与 DeepSeek V4.1 Flash API 价格降至四折](#item-ai-creator-5) ⭐️ 7.0/10
-6. [特朗普政府被指批准向中国关联公司出售 58 万颗英伟达 AI 芯片](#item-ai-creator-6) ⭐️ 7.0/10
+1. [OpenRouter 披露推理供应商数据处理事故](#item-ai-creator-1) ⭐️ 8.0/10
+2. [OpenAI 发文将困惑度作为基础模型预训练进展的简单基准](#item-ai-creator-2) ⭐️ 7.0/10
+3. [Anthropic 数学家称用 Claude 辅助证明三维 Navier–Stokes 爆破，Lean 代码已公开但待核验](#item-ai-creator-3) ⭐️ 7.0/10
+4. [OpenCode 页面显示 GLM-5.3 与 DeepSeek V4.1 Flash API 价格四折](#item-ai-creator-4) ⭐️ 7.0/10
+5. [待核实：美方被指放行英伟达对华出售约 87.9 万颗 AI 芯片](#item-ai-creator-5) ⭐️ 7.0/10
 
 ---
 
 ## AI 创作者雷达
 
 <a id="item-ai-creator-1"></a>
-### [OpenRouter 披露推理供应商数据处理事件](https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/) ⭐️ 8.0/10
+### [OpenRouter 披露推理供应商数据处理事故](https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/) ⭐️ 8.0/10
 
-OpenRouter 发布公告，说明其推理供应商出现数据处理事件，涉及 MiniMax 读取或转发提示词。社区讨论提到，部分供应商（评论中提及 AtlasCloud、Novita、StreamLake）可能将请求转发至 MiniMax 服务器，而非自行处理。有用户称收到邮件，并提到安全研究员通过植入诱饵 URL 发现访问行为。受影响的是使用 OpenRouter 多模型路由的开发者与用户；具体影响范围、供应商名单和整改措施需以公告原文核实，评论中的部分说法属于用户转述。
+OpenRouter 发布公告，披露其推理供应商存在数据处理事故。据评论转述，部分供应商（评论提及 AtlasCloud、Novita、StreamLake）将请求转发至上游 MiniMax，而非自行处理；有安全研究者通过植入诱饵 URL 发现请求被访问。评论还提到 OpenRouter 的零数据保留（ZDR）承诺在此次事件中失效。受影响的是使用 OpenRouter 路由、依赖其隐私承诺的开发者；具体受影响范围、供应商完整名单与整改措施仍需以公告原文核实。
 
 hackernews · sdko · 11月22日 02:14 · [社区讨论](https://news.ycombinator.com/item?id=50595554)
 
-**「为何值得注意」** 该公告已发布并引发 HN 讨论（272 分、90 条评论），显示真实用户关注；但事件细节与整改力度尚未在材料中完整证实。
+**「为何值得注意」** 这是平台层面首次公开承认推理供应商存在数据处理问题，直接触及开发者对提示词隐私与供应商路由的信任。已发生的是公告披露与用户收到邮件通知；对 OpenRouter 供应商审核机制的实际影响尚未证实。
 
-**「内容切入角度」** 可做角度：从 OpenRouter 公告出发，梳理多模型路由场景下“供应商转发提示词”与零数据保留（ZDR）承诺之间的信任缺口，并说明开发者可通过供应商白名单等设置降低暴露面。
+**「内容角度」** 可做角度：梳理 OpenRouter 公告中承认的供应商转发行为与 ZDR 承诺之间的落差，说明开发者如何通过限制可选供应商来降低提示词外流风险，并标注哪些细节仍待官方原文确认。
 
-**「社区讨论」** 评论中有人因该事件放弃考虑迁移至 OpenRouter，也有人肯定其回应但认为直接与推理供应商签订 ZDR 协议更可靠；有用户称仅一个提示词受影响，并已将路由限制为可信供应商。共识是供应商转发行为令人担忧，但对 OpenRouter 整改是否足够存在分歧。
+**「社区讨论」** 评论分歧明显：有人因该事件放弃迁移到 OpenRouter，认为其缺乏供应商审核；也有人肯定 OpenRouter 的回应，但指出最可靠的 ZDR 仍是与推理供应商直接签约。有用户称仅一条提示词受影响、影响不大，但已手动限制可选供应商；另有评论提醒不应默认任何供应商会遵守公开的数据保留承诺。
 
-**标签**: `#OpenRouter`, `#数据隐私`, `#推理供应商`, `#MiniMax`, `#LLM 路由`
+**标签**: `#OpenRouter`, `#数据隐私`, `#推理供应商`, `#零数据保留`, `#AI 安全`
 
 ---
 
 <a id="item-ai-creator-2"></a>
-### [Anthropic 数学家与 Claude 声称证明 Navier–Stokes 问题，同日另有 940 页纯人类黎曼猜想草稿公开](https://www.qbitai.com/2026/11/511870.html) ⭐️ 8.0/10
+### [OpenAI 发文将困惑度作为基础模型预训练进展的简单基准](https://openai.com/index/perplexity-and-intelligence/) ⭐️ 7.0/10
 
-11 月 20 日，Anthropic 数学家 Levent Alpöge 与纽约大学教授 Tristan Buckmaster 公布 79 页论文，声称证明三维 Navier–Stokes 方程的无外力有限时间爆破，并公开 Lean 形式化证明代码。同日，数学家 Alessandro Maria Masullo 发布未使用 AI 的广义黎曼猜想证明草稿，篇幅 940 页，耗时近 12 年。两项主张均待独立核验；陶哲轩已发文讨论 NS 证明，认为大体策略清楚但仍需整理成规范文本。
+OpenAI 发布文章，将困惑度（perplexity）定位为追踪基础模型预训练进展的简单基准，但文章本身未给出困惑度的定义。Hacker News 上该帖获得 482 分、334 条评论，讨论集中在困惑度与智能的关系以及这一指标是否仍然重要。评论中有人引用 Mustafa Suleyman 的推文，称微软 MAI-2 Base 在同一评测集上的对数困惑度为 0.819，与 GPT-5.6 Sol 基础模型处于同一量级；该数字来自第三方推文而非 OpenAI 原文，尚未独立验证。
 
-rss · 量子位 · 11月22日 06:03
+hackernews · acossta · 11月22日 17:06 · [社区讨论](https://news.ycombinator.com/item?id=50601525)
 
-**「为何值得关注」** 两项千禧年难题的证明主张在同一天公开，且一项明确由 Claude 参与生成、整理和重写，另一项强调纯人类完成，形成 AI 辅助数学与人类长期研究的直接对照。但两者均非已确认成果，NS 证明的数值证书尚未公开，黎曼猜想草稿公开约 8 小时后已有研究者借助不同 AI 模型报告问题，最终能否成立仍待确认。
+**「为何值得注意」** 在评测基准日益复杂、RL 训练占比上升的背景下，OpenAI 提出用一个简单的留出集困惑度来观察预训练进展，引发了对“交叉熵损失是否仍重要”的讨论。微软方面声称加入同一评测集，但目前只有推文层面的说法，缺乏可复核的细节。
 
-**「内容切入角度」** 可做角度：从“有论文、有 Lean 代码”不等于“外界已完整验证”切入，梳理 NS 证明公开仓库中数值证书未公开、Lean 包未重新构建等具体待核验环节，说明 AI 参与生成证明与人类复核证明之间的进度差。
+**「内容角度」** 可做角度：梳理“困惑度作为预训练进展基准”这一提法的具体主张与边界——它衡量的是什么、文章没有定义什么、以及微软 MAI 数字目前仅来自推文这一证据层级，帮助读者区分已发布主张与未验证说法。
 
-**标签**: `#千禧年难题`, `#Navier-Stokes`, `#AI辅助数学证明`, `#Lean形式化验证`, `#数学研究范式`
+**「社区讨论」** 评论者对困惑度趋势的清晰度感到意外，认为在 RL 广泛使用后交叉熵损失仍具指示性；也有人肯定这种简单基准优于日益复杂的评测。另有评论补充了困惑度的定义，并引用 2008 年关于预测率与压缩的论文来支持这一对应关系。
+
+**标签**: `#perplexity`, `#base-models`, `#pre-training`, `#evaluation-benchmarks`, `#OpenAI`
 
 ---
 
 <a id="item-ai-creator-3"></a>
-### [分析称 Anthropic 2028 年电力 87% 来自天然气、11% 来自煤炭](https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/) ⭐️ 7.0/10
+### [Anthropic 数学家称用 Claude 辅助证明三维 Navier–Stokes 爆破，Lean 代码已公开但待核验](https://www.qbitai.com/2026/11/511870.html) ⭐️ 7.0/10
 
-一篇分析文章称，Anthropic 在 2028 年的电力结构将为 87% 天然气、11% 煤炭。该数据来自第三方分析而非 Anthropic 官方公告，统计口径尚待核实。文章在 Hacker News 引发高热度讨论，焦点是 AI 数据中心的能源来源与环境外部性。
+Anthropic 数学家 Levent Alpöge 与纽约大学教授 Tristan Buckmaster 于 11 月 20 日发布 79 页论文，声称证明了三维 Navier–Stokes 方程在无外力条件下的有限时间爆破，并公开了 Lean 形式化证明代码。陶哲轩发文称该证明的大体策略已清楚，但仍需整理成规范证明文本并等待独立核验。作者公开的仓库显示，支撑证明构造的数值证书尚未公开，发布当天打过补丁的 Lean 包在组装仓库时也尚未重新构建，因此外界尚不能完整复核。同日，数学家 Alessandro Maria Masullo 发布了一份耗时近 12 年、约 940 页的广义黎曼猜想证明草稿，该草稿未使用 AI，公开约 8 小时后已有研究者借助不同 AI 模型报告其中存在问题。
 
-hackernews · happosai · 11月22日 08:57 · [社区讨论](https://news.ycombinator.com/item?id=50597612)
+rss · 量子位 · 11月22日 06:03
 
-**「为何值得注意」** AI 数据中心的用电规模正快速上升，而这份分析给出了一个具体到年份和燃料比例的量化口径，使“AI 电力从哪来”从抽象讨论变成可核对的问题。不过其数字来自第三方推算，尚未获 Anthropic 确认。
+**「为何值得关注」** 这是 AI 辅助数学证明进入千禧难题级别问题的具体案例，且论文、Lean 代码和第三方回应均已公开，具备可追踪的核验路径。但核心主张尚未经同行验证，数值证书缺失和 Lean 包未重建也构成当前复核的明确障碍。
 
-**「内容角度」** 可做角度：把“87% 天然气、11% 煤炭”当作一个待核实的第三方估算来拆解——说明数据来源、统计边界和不确定性，再对照 Anthropic 是否公开过可再生能源承诺，呈现事实与推测的边界。
+**「内容切入角度」** 可做角度：围绕“有论文、有 Lean 代码不等于已完整验证”这一张力，梳理该证明从公开到可独立复核还缺哪些环节——数值证书何时公开、计算能否复现、形式化代码能否独立检查，以及陶哲轩所说“策略清楚但需规范文本”具体指什么。
 
-**「社区讨论」** 评论者多批评 Anthropic 在能源与污染上的表现，有人提到其租用 Colossus 1 对孟菲斯当地造成污染，并指出其在美国缺乏可再生能源承诺；也有人主张需要监管来内部化环境与社会成本。另有评论强调数据中心能耗规模远超公众直觉。这些是评论者观点，不代表已核实的事实。
-
-**标签**: `#AI 数据中心能耗`, `#Anthropic`, `#环境影响`, `#能源结构`, `#AI 基础设施`
+**标签**: `#Navier-Stokes`, `#千禧难题`, `#Lean形式化证明`, `#AI辅助数学`, `#Anthropic`
 
 ---
 
 <a id="item-ai-creator-4"></a>
-### [Gemini 将拆分“保留活动记录”为两项独立设置](https://blog.google/innovation-and-ai/products/gemini-app/updated-controls/) ⭐️ 7.0/10
+### [OpenCode 页面显示 GLM-5.3 与 DeepSeek V4.1 Flash API 价格四折](https://opencode.ai/console/models) ⭐️ 7.0/10
 
-Google Gemini 团队发布通知称，将在未来几周内用两项新设置取代 Gemini 应用的“保留活动记录”：一项控制历史记录保存时长，另一项单独决定对话内容（含文字与附件）是否用于训练生成式 AI 模型。用户可保留对话记录但关闭训练授权。关闭“历史记录”后，新的 Gemini 对话约保存 2 个月，并在人工审核员协助下用于回复用户、处理反馈及保护 Google 与公众。变更生效时，两项设置按原开关状态同步开关；音频与 Gemini Live 录音默认仍不用于改进 Google 服务。
+OpenCode 模型价格页显示，GLM-5.3 与 DeepSeek V4.1 Flash 的 API 价格均标注「60% off」，即按原价四折计费。页面列出每百万 token 费用：GLM-5.3 输入 $0.56、输出 $1.76、缓存读取 $0.104；DeepSeek V4.1 Flash 输入 $0.12、输出 $0.48、缓存读取 $0.0024。该信息来自 Telegram 频道转述，未附官方公告或折扣期限，折扣是否长期、是否仅限 OpenCode 渠道尚不确定。
 
-telegram · zaihuapd · 11月22日 01:24
+telegram · zaihuapd · 11月22日 03:48
 
-**「为何值得注意」** 这是 Google 官方博客公告的二手转述，核心变化明确：原先单一的“保留活动记录”被拆成历史记录保存时长与训练数据授权两项独立设置。具体上线时间仅称“未来几周”，实际影响尚待生效后观察。
+**「为何值得注意」** 两款模型同时出现四折标价，对正在做 API 成本核算的开发者有直接参考价值；但折扣的生效范围与持续时间尚未由官方渠道确认。
 
-**「内容角度」** 可做角度：从“保留记录但关闭训练授权”这一新选项出发，梳理 Gemini 设置变更前后用户可做的隐私选择，并说明关闭历史记录后约 2 个月的保存期限与人工审核用途。
+**「内容角度」** 可做角度：以 OpenCode 页面列出的每百万 token 单价为基准，对比 GLM-5.3 与 DeepSeek V4.1 Flash 在输入、输出和缓存读取三项上的费用差异，并注明该折扣仅见于第三方聚合页面、官方公告与期限待核实。
 
-**标签**: `#Google Gemini`, `#隐私设置`, `#训练数据`, `#用户数据授权`, `#产品更新`
+**标签**: `#API 定价`, `#GLM-5.3`, `#DeepSeek V4.1`, `#OpenCode`, `#开发者成本`
 
 ---
 
 <a id="item-ai-creator-5"></a>
-### [OpenCode 将 GLM-5.3 与 DeepSeek V4.1 Flash API 价格降至四折](https://opencode.ai/console/models) ⭐️ 7.0/10
+### [待核实：美方被指放行英伟达对华出售约 87.9 万颗 AI 芯片](https://news.google.com/rss/articles/CBMimwFBVV95cUxOSkNyOXNKcTlJNm9tZ3lqcGV0UFZ1Tmc2c2l4alZYU1AxWl9yYlV0MF9YTUxaQ3NtaXFROC03eEd5dklsWTQ4UXhnS29wV3FIUG1rSnFYQkh5YlRjLURXR3RCM0MwemZZS0pEcHdDMmxnUno2ZjR6NENMMmREVkZHNFdlbXNxNTRpZklJZ21IdWY4dWVsRUpOa2c1cw?oc=5) ⭐️ 7.0/10
 
-OpenCode 模型价格页显示，GLM-5.3 与 DeepSeek V4.1 Flash 均标注「60% off」，即按原价四折计费。每百万 token 费率：GLM-5.3 输入 $0.56、输出 $1.76、缓存读取 $0.104；DeepSeek V4.1 Flash 输入 $0.12、输出 $0.48、缓存读取 $0.0024。受影响的是通过 OpenCode 调用这两款模型的开发者，但来源为 Telegram 频道转述，未附官方公告，折扣截止时间与是否长期有效均不明确。
+Korben 的一篇报道标题称，美国放行英伟达向与军方有关联的中国巨头出售约 87.9 万颗 AI 芯片。目前可获取的内容仅为标题和 Google News 跳转链接，没有原始公告、官方文件或芯片型号、交易条件、时间窗口等可核实细节，因此该数字与“军方关联”的表述均无法确认。若属实，这一规模将直接影响 AI 算力供给与出口管制执行，但现阶段应视为待核实线索。
 
-telegram · zaihuapd · 11月22日 03:48
+google\_news · Korben · 11月22日 07:56
 
-**「为何值得注意」** 价格页已显示四折费率，属于可核查的当前标价变化；但折扣的持续时间和适用范围尚未证实，不宜据此推断长期成本。
+**「为何值得注意」** 该标题指向一项具体的政策与出口变化，涉及英伟达对华销售和出口管制，属于当下中美科技与 AI 算力议题的敏感方向。但材料未提供一手来源，变化是否已发生、适用范围如何均未证实。
 
-**「内容角度」** 可做角度：以价格页列出的每百万 token 输入、输出、缓存读取费率为基准，整理一张 GLM-5.3 与 DeepSeek V4.1 Flash 的四折价对照表，并明确标注折扣截止时间未知这一不确定性。
+**「内容角度」** 可做角度：以“一条只有标题的放行传闻”为切口，梳理核实这类出口管制消息需要哪些一手证据（官方公告、许可文件、芯片型号与数量口径），并说明在缺乏这些信息时为何不宜直接下结论。
 
-**标签**: `#API定价`, `#OpenCode`, `#GLM-5.3`, `#DeepSeek V4.1`, `#开发者成本`
-
----
-
-<a id="item-ai-creator-6"></a>
-### [特朗普政府被指批准向中国关联公司出售 58 万颗英伟达 AI 芯片](https://news.google.com/rss/articles/CBMigAFBVV95cUxPSFVFUUxURXk5V2poUzA2eGU3dEoxV2QwUXdzVlJteWVxOWFzXzZSUUNreTZsU182V0FDMzhfS1NHV0lvQzk1V09IbFlILWcwOGhlVDZnRUQtNFhWQnkwZFBEVlV3QVpOcU1TSGxMTEdocjhNRk9YUkR5bUNWQ3oycQ?oc=5) ⭐️ 7.0/10
-
-一则报道称，特朗普政府批准向与中国有关联的公司出售 580,000 颗英伟达 AI 芯片，并称政府将从中抽取分成。目前可获取的内容仅有标题和跳转链接，没有正文、官方公告或可核实细节，芯片型号、涉及公司、分成机制和生效时间均不明确。来源为知名度较低、自称“挖掘可验证真相”的 OGM News NG，该说法尚待核实。
-
-google\_news · OGM News NG - Digging Deep for Verifiable Truth · 11月22日 07:00
-
-**「为何值得注意」** 若该说法属实，这将是涉及 AI 硬件供应和中美科技政策的重要变化；但现阶段只有标题层面的信息，政策是否真正落地、适用范围多大都未获证实。
-
-**「内容角度」** 可做角度：以“一条只有标题的重大政策传闻”为切口，梳理这条消息目前能确认什么、缺哪些关键信息（芯片型号、买方身份、政府分成方式、生效时间），并说明在官方公告或权威媒体核实前不宜当作既成事实传播。
-
-**标签**: `#Nvidia`, `#AI芯片出口管制`, `#中美科技政策`, `#供应链`, `#待核实`
+**标签**: `#英伟达`, `#出口管制`, `#AI芯片`, `#中美科技`, `#政策监管`
 
 ---
